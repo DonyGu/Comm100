@@ -1,5 +1,5 @@
 
-# Email Accounts
+# EmailAccounts
 ## objects 
 ### emailAccount
 | Name | Type | Description | 
@@ -45,7 +45,7 @@
 | `userName` | string | user name | 
 
 ## endpoints 
-### List Email Accounts
+### List all email accounts
 `get api/v2/anytimeConversation/emailAccounts` 
 + Parameters
     - no parameters
@@ -112,10 +112,10 @@
 + Response
     - http status code
 
-# Routing rules
+# RoutingRules
 + adjust from social
 
-# Auto Allocation
+# AutoAllocation
 ## object
 ### autoAllocationSetting
 | Name | Type | Description | 
@@ -163,14 +163,14 @@
 ### Enable/Disable auto allocation
 `put api/v2/anytimeConversation/autoAllocation/enable `
 + Parameters
-    - enable: boolean, if enable Auto Allocation
+    - enable: boolean, if enable auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
 `put api/v2/anytimeConversation/autoAllocation `
 + Parameters
-    - enable: boolean, if enable Auto Allocation
+    - enable: boolean, if enable auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
     - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
     - maxNumberForAllAgents: integer, max conversation number for all agents
@@ -181,4 +181,125 @@
 + Response
     - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
 
- 
+# Triggers
+## object
+### trigger
++ todo:
+
+## endpoints
+### List all triggers
+`get api/v2/anytimeConversation/triggers`
++ Parameters
+    - no parameters
++ Response
+    - triggers: [trigger](#trigger) list
+
+### Get a trigger
+`get api/v2/anytimeConversation/triggers/{id}`
++ Parameters
+    - id: uniqueIdentifier, trigger id
++ Response
+    - trigger: [trigger](#trigger)
+
+### Submit a trigger
+`post api/v2/anytimeConversation/triggers`
++ Parameters
+    - todo:
++ Response
+    - todo:
+
+ ### Update a trigger
+`put api/v2/anytimeConversation/triggers/{id}`
++ Parameters
+    - todo:
++ Response
+    - todo:
+
+### Upgrade/Downgrade a triggers
+`put api/v2/anytimeConversation/triggers/{id}`
++ Parameters
+    - todo:
++ Response
+    - todo:
+
+### Enable/Disable a triggers
+`put api/v2/anytimeConversation/triggers/{id}`
++ Parameters
+    - id: uniqueIdentifier, trigger id
+    - enable: boolean, if enable the trigger
++ Response
+    - http status code
+
+ ### Delete a trigger
+`delete api/v2/anytimeConversation/triggers/{id}`
++ Parameters
+    - id: uniqueIdentifier, trigger id
++ Response
+    - http status code
+
+# SLAPolicies
+
+# WorkingTime&Holiday
+
+# BlockedSenders 
+## objects 
+### blocked sender 
+| Name | Type | Description | 
+| - | - | - | 
+| `email` | string | email or domain | 
+| `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
+
+## endpoints 
+### List blocked senders 
+`get /api/v2/ticket/blockedSenders` 
++ Parameters 
+    - email: string, domain or email address 
++ Response 
+    - blockedSenders: [block sender](#blocked-sender) list 
+
+### Add/update a block sender 
+`put api/v2/ticket/blockedSenders` 
++ Parameters 
+    - `email`, string, domain or email address 
+    - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
++ Response 
+    - blockedSender: [block sender](#blocked-sender) 
+
+### Remove a block sender 
+`delete api/v2/ticket/blockedSenders` 
++ Parameters 
+   - email: string, domain or email address 
++ Response 
+    - http status code
+
+
+# Fields&Mapping 
+## objects 
+### field 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | field id | 
+| `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
+| `name` | integer | field name | 
+| `isSystemField` | boolean | if is system field | 
+| `isRequired` | boolean | value if is required | 
+| `defaultValue` | string | field default value | 
+| `helpText` | string | field help text | 
+| `length` | integer | field value max length | 
+| `options` | [field option](#fieldoption)[] | value option | 
+
+### fieldOption 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | option id | 
+| `name` | string | option name | 
+| `value` | string | field value | 
+| `order` | integer | option order | 
+
+## endpoints 
+### List all fields and their options 
+`get api/v2/ticket/fields` 
++ Parameters
+    - no parameters
++ Response 
+    - fields: [field](#field) list 
