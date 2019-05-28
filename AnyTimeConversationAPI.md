@@ -47,6 +47,8 @@
 ## endpoints 
 ### List Email Accounts
 `get api/v2/anytimeConversation/emailAccounts` 
++ Parameters
+    - no parameters
 + Response 
     - emailAccounts: [emailAccount](#emailAccount) list
 
@@ -83,7 +85,7 @@
    - emailAccount: [emailAccount](#emailAccount) 
 
 ### Test a email account
-`put api/v2/anytimeConversation/emailAccount/{id}`
+`put api/v2/anytimeConversation/emailAccount/{id}/test`
 + Parameters
     - id: uniqueIdentifier, email account id
     - type: string, exchange, IMAP, emailForwording
@@ -96,7 +98,7 @@
    - http status code
 
 ### Enable/Disable a email account
-`put api/v2/anytimeConversation/emailAccount/{id}`
+`put api/v2/anytimeConversation/emailAccount/{id}/enable`
 + Parameters
     - id: uniqueIdentifier, email account id
     - enable: boolean, if enable email account
@@ -111,7 +113,7 @@
     - http status code
 
 # Routing rules
-
++ adjust from social
 
 # Auto Allocation
 ## object
@@ -119,16 +121,14 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `enable` | boolean | if enable Auto Allocation |
-| `isEnabledDepartment` | boolean | if enable Auto Allocation |
+| `isEnabledDepartment` | boolean | if the department is enabled |
 | `allocationRuleSettings`| [allocationRuleSetting](#allocationRuleSetting)[] | array of allocation rule settings |
 | `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
-| `maxNumberForAll` | integer | max conversation number for all agents |
-| `departmentFilters` | [departmentFilter](#departmentFilter)[] | `exchangeServer`, `IMAPServer`, `emailForwordingServer` |
-| `assigneedDepartment` | integer | default assigneed department |
-| `assigneedAgent` | integer | default assigneed agent |
-| `status` | boolean | succeeded, failed |
-| `lastReceivedTime` | datetime | last received time |
-| `enable` | boolean | if enable email account |
+| `maxNumberForAllAgents` | integer | max conversation number for all agents |
+| `departmentFilters` | [departmentFilter](#departmentFilter)[] | departments |
+| `allocationAgentPreferences` | [allocationAgentPreference](#allocationAgentPreference)[] | agent preference for allocation |
+| `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
+| `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
 
 ### allocationRuleSetting
 | Name | Type | Description | 
@@ -153,11 +153,32 @@
 | `ifAcceptAllocation` | boolean | if the agent accept conversations |
 
 ## endpoints
-### Enable/Disable Auto Allocation
-`put api/`
+### Get auto allocation settings
+`get api/v2/anytimeConversation/autoAllocation`
++ Parameters
+    - no parameters
++ Response
+    - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
 
+### Enable/Disable auto allocation
+`put api/v2/anytimeConversation/autoAllocation/enable `
++ Parameters
+    - enable: boolean, if enable Auto Allocation
++ Response
+    - http status code
 
+### Update auto allocation settings
+`put api/v2/anytimeConversation/autoAllocation `
++ Parameters
+    - enable: boolean, if enable Auto Allocation
+    - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
+    - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
+    - maxNumberForAllAgents: integer, max conversation number for all agents
+    - departmentFilters: [departmentFilter](#departmentFilter)[]
+    - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
+    - excludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
+    - excludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
++ Response
+    - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
 
-	• Auto Allocation 40
-		○ IfEnable 10
-UpdateAutoAllocation 30
+ 
