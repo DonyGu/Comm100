@@ -109,3 +109,55 @@
     - id: uniqueIdentifier, email account id
 + Response
     - http status code
+
+# Routing rules
+
+
+# Auto Allocation
+## object
+### autoAllocationSetting
+| Name | Type | Description | 
+| - | - | - | 
+| `enable` | boolean | if enable Auto Allocation |
+| `isEnabledDepartment` | boolean | if enable Auto Allocation |
+| `allocationRuleSettings`| [allocationRuleSetting](#allocationRuleSetting)[] | array of allocation rule settings |
+| `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
+| `maxNumberForAll` | integer | max conversation number for all agents |
+| `departmentFilters` | [departmentFilter](#departmentFilter)[] | `exchangeServer`, `IMAPServer`, `emailForwordingServer` |
+| `assigneedDepartment` | integer | default assigneed department |
+| `assigneedAgent` | integer | default assigneed agent |
+| `status` | boolean | succeeded, failed |
+| `lastReceivedTime` | datetime | last received time |
+| `enable` | boolean | if enable email account |
+
+### allocationRuleSetting
+| Name | Type | Description | 
+| - | - | - | 
+| `departmentId` | uniqueIdentifer | department id |
+| `allocationTo` | string | allocated object |
+| `allocationRule`| string | `loadBalancing`, `roundRobin` |
+| `preferLastAssignee` | boolean | prefer to allocate to the last assignee |
+
+### departmentFilter
+| Name | Type | Description | 
+| - | - | - | 
+| `departmentId` | uniqueIdentifer | department id |
+| `department` | string | department name |
+| `agentIds`| string | the ids of the agents in the department |
+
+### allocationAgentPreference
+| Name | Type | Description | 
+| - | - | - | 
+| `agentId` | uniqueIdentifer | agent id |
+| `maxConcurrentCount` | integer | the maximum number of the conversations a agent can accept at the same time |
+| `ifAcceptAllocation` | boolean | if the agent accept conversations |
+
+## endpoints
+### Enable/Disable Auto Allocation
+`put api/`
+
+
+
+	• Auto Allocation 40
+		○ IfEnable 10
+UpdateAutoAllocation 30
