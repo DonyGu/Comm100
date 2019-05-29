@@ -497,28 +497,87 @@
 ### field 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | field id | 
-| `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
-| `name` | integer | field name | 
+| `id` | uniqueIdentifier | field id | 
+| `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` |
+| `name` | string | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
 | `defaultValue` | string | field default value | 
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
 | `options` | [field option](#fieldoption)[] | value option | 
+| `chatFieldMapping` | uniqueIdentifier | chat field id |
+| `offlineMessageFieldMapping` | uniqueIdentifier | offline message field id |
 
 ### fieldOption 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | option id | 
+| `id` | uniqueIdentifier | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
 | `order` | integer | option order | 
 
+### fieldMapping
+| Name | Type | Description | 
+| - | - | - | 
+| `fieldId` | uniqueIdentifier | field id | 
+| `chatFieldMapping` | uniqueIdentifier | chat field id |
+| `offlineMessageFieldMapping` | uniqueIdentifier | offline message field id |
+
 ## endpoints 
 ### List all fields and their options 
-`get api/v3/ticket/fields` 
+`get api/v3/anytimeConversation/fields` 
 + Parameters
-    - no parameters
+    - isSystemField: boolean, if is system field 
 + Response 
     - fields: [field](#field) list 
+
+### Get a field
+`get api/v3/anytimeConversation/fields/{id}`
++ Parameters
+    - id: uniqueIdentifier, field id
++ Response
+    - fields: [field](#field) 
+
+### Create a field
+`post api/v3/anytimeConversation/fields`
++ Parameters
+    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
+    - name, string, field name 
+    - isSystemField, boolean, if is system field 
+    - isRequired, boolean, value if is required 
+    - defaultValue, string, field default value 
+    - helpText, string, field help text 
+    - length, integer, field value max length 
+    - options, [field option](#fieldoption)[], value option 
++ Response
+    - fields: [field](#field) 
+
+### Update a field
+`put api/v3/anytimeConversation/fields/{id}`
++ Parameters
+    - id, uniqueIdentifier, field id 
+    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
+    - name, string, field name 
+    - isSystemField, boolean, if is system field 
+    - isRequired, boolean, value if is required 
+    - defaultValue, string, field default value 
+    - helpText, string, field help text 
+    - length, integer, field value max length 
+    - options, [field option](#fieldoption)[], value option 
++ Response
+    - fields: [field](#field) 
+
+### Delete a field
+`delete api/v3/anytimeConversation/fields/{id}`
++ Parameters
+    - id, uniqueIdentifier, field id 
++ Response
+    - http status code
+
+### Mapping fields
+`put api/v3/anytimeConversation/fields/mapping`
++ Parameters
+    - fieldMappings: [fieldMapping](#fieldMapping) list
++ Response
+    - http status code
