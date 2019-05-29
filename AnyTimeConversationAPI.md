@@ -113,7 +113,7 @@
     - http status code
 
 # RoutingRules
-+ adjust from social
+
 
 # AutoAllocation
 ## object
@@ -203,12 +203,12 @@
 | `attachment` | [attachment](#attachment) | attachment |
 | `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
 
-### conditoin
+### condition
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | uniqueIdentifier | id of the condition |
 | `type` | string | `query`, `rule`, `sla`, `routingRule` |
-| `fieldId` | integer | field id | 
+| `fieldId` | uniqueIdentifier | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 
@@ -216,16 +216,14 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | uniqueIdentifier | id of the autoUpdate |
-| `type` | string | `query`, `rule`, `sla`, `routingRule` |
-| `fieldId` | integer | field id | 
-| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `triggerId` | uniqueIdentifier | trigger id |
+| `fieldId` | uniqueIdentifier | field id | 
 | `value` | string | condition value | 
-
 
 ## endpoints
 ### List all triggers
 `get api/v3/anytimeConversation/triggers`
-+ Parameters
++ Parameters 
     - no parameters
 + Response
     - triggers: [trigger](#trigger) list
@@ -240,23 +238,23 @@
 ### Submit a trigger
 `post api/v3/anytimeConversation/triggers`
 + Parameters
-    - todo:
+    - trigger: [trigger](#trigger) without id
 + Response
-    - todo:
+    - trigger: [trigger](#trigger)
 
  ### Update a trigger
 `put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
-    - todo:
+    - trigger: [trigger](#trigger)
 + Response
-    - todo:
+    - trigger: [trigger](#trigger)
 
 ### Upgrade/Downgrade a triggers
 `put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
-    - todo:
+    - id: uniqueIdentifier, trigger id
 + Response
-    - todo:
+    - triggers: [trigger](#trigger) list
 
 ### Enable/Disable a triggers
 `put api/v3/anytimeConversation/triggers/{id}`
@@ -275,9 +273,71 @@
 
 # SLAPolicies
 ## objects
+### SLAPolicy
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | uniqueIdentifer | SLA policy id |
+| `enable` | boolean | if enable this SLA policy |
+| `firstRespondWithin` | integer | the hours first reply within |
+| `nextRespondWithin` | integer | the hours next reply within |
+| `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
+| `operationalHour`| string | `businessHours`, `calenderHours` |
+| `conditions` | [condition](#condition)[] | conditions | 
+| `order` | integer | order |
 
 ## endpoints
+### List all SLA policies
+`get api/v2/anytimeConversation/SLAPolicies`
++ Parameters
+    - no parameters
++ Response
+    - SLAPolicy: [SLAPolicy](#SLApolicy) list
 
+### Get a SLA policy
+`get api/v2/anytimeConversation/SLAPolicies/{id}`
++ Parameters
+    - id: uniqueIdentifier, SLA policy id
++ Response
+    - SLAPolicy: [SLAPolicy](#SLApolicy)
+
+### Create a SLA policy
+`post api/v2/anytimeConversation/SLAPolicies`
++ Parameters
+    - enable: boolean, if enable this SLA policy 
+    - firstRespondWithin: integer, 
+    - nextRespondWithin: integer, 
+    - resolveRespondWithin: integer, 
+    - operationalHour: string, `businessHours`, `calenderHours` 
+    - conditions: [condition](#condition)[]
++ Response
+    - SLAPolicy: [SLAPolicy](#SLApolicy)
+
+### Update a SLA policy
+`put api/v2/anytimeConversation/SLAPolicies/{id}`
++ Parameters
+    - id: uniqueIdentifer, SLA policy id 
+    - enable: boolean, if enable this SLA policy 
+    - firstRespondWithin: integer,  
+    - nextRespondWithin: integer, 
+    - resolveRespondWithin: integer,  
+    - operationalHour: string, `businessHours`, `calenderHours` 
+    - conditions: [condition](#condition)[]
++ Response
+    - SLAPolicy: [SLAPolicy](#SLApolicy)
+
+### Delete a SLA policy
+`delete api/v2/anytimeConversation/SLAPolicies/{id}`
++ Parameters
+    - id: uniqueIdentifier, SLA policy id
++ Response
+    - http status code
+
+### Upgrade/Downgrade a SLA policy
+`put api/v3/anytimeConversation/triggers/{id}`
++ Parameters
+    - id: uniqueIdentifier, SLA policy id
++ Response
+    - SLAPolicy: [SLAPolicy](#SLApolicy) list
 
 # WorkingTime&Holiday
 ## objects
