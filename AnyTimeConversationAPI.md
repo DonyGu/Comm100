@@ -59,7 +59,7 @@
 + Response 
     - emailAccount: [emailAccount](#emailAccount) 
 
-### Submit a new email account
+### Create a new email account
 `post api/v3/anytimeConversation/emailAccounts`
 + Parameters
     - type: string, exchange, IMAP, emailForwarding
@@ -122,28 +122,21 @@
 | - | - | - | 
 | `enable` | boolean | if enable Auto Allocation |
 | `isEnabledDepartment` | boolean | if the department is enabled |
-| `allocationRuleSettings`| [allocationRuleSetting](#allocationRuleSetting)[] | array of allocation rule settings |
+| `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
+| `defaultAllocationRule`| [allocationRule](#allocationRule) | default allocation rules |
 | `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
 | `maxNumberForAllAgents` | integer | max conversation number for all agents |
-| `departmentFilters` | [departmentFilter](#departmentFilter)[] | departments |
 | `allocationAgentPreferences` | [allocationAgentPreference](#allocationAgentPreference)[] | agent preference for allocation |
 | `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
 
-### allocationRuleSetting
+### allocationRule
 | Name | Type | Description | 
 | - | - | - | 
 | `departmentId` | uniqueIdentifer | department id |
 | `allocationTo` | string | allocated object |
 | `allocationRule`| string | `loadBalancing`, `roundRobin` |
 | `preferLastAssignee` | boolean | prefer to allocate to the last assignee |
-
-### departmentFilter
-| Name | Type | Description | 
-| - | - | - | 
-| `departmentId` | uniqueIdentifer | department id |
-| `department` | string | department name |
-| `agentIds`| string | the ids of the agents in the department |
 
 ### allocationAgentPreference
 | Name | Type | Description | 
@@ -174,7 +167,6 @@
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
     - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
     - maxNumberForAllAgents: integer, max conversation number for all agents
-    - departmentFilters: [departmentFilter](#departmentFilter)[]
     - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
     - excludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
     - excludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
@@ -189,7 +181,7 @@
 | `id` | uniqueIdentifier | id of the trigger |
 | `description` | string | description of the trigger |
 | `enable` | boolean | if enable the trigger |
-| `event` | string | `When a conversation is created`, `When a conversation reply is received`, `When agent replied`, `When the assignee of a conversation is changed`, `When the status of a conversation is changed`, `When a conversation stays at a status for a specified period of time` |
+| `event` | string | `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversation Stays at a status for a specified period of time` |
 | `conditions` | [condition](#condition)[] | conditions | 
 | `setValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
@@ -208,7 +200,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | uniqueIdentifier | id of the condition |
-| `type` | string | `query`, `rule`, `sla`, `routingRule` |
+| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
 | `fieldId` | uniqueIdentifier | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
