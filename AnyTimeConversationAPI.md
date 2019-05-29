@@ -9,8 +9,8 @@
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
 | `serverInfo` | dynamic | `exchangeServer`, `IMAPServer`, `emailForwardingServer` |
-| `assigneedDepartment` | integer | default assigneed department |
-| `assigneedAgent` | integer | default assigneed agent |
+| `assignedDepartment` | integer | default assigned department |
+| `assignedAgent` | integer | default assigned agent |
 | `status` | boolean | succeeded, failed |
 | `lastReceivedTime` | datetime | last received time |
 | `enable` | boolean | if enable email account |
@@ -65,8 +65,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assigneedDepartment: integer, default assigneed department
-    - assigneedAgent: integer, default assigneed agent
+    - assignedDepartment: integer, default assigned department
+    - assignedAgent: integer, default assigned agent
     - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
     - emailAccounts: [emailAccount](#emailAccount) list
@@ -78,8 +78,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assigneedDepartment: integer, default assigneed department
-    - assigneedAgent: integer, default assigneed agent
+    - assignedDepartment: integer, default assigned department
+    - assignedAgent: integer, default assigned agent
     - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
    - emailAccount: [emailAccount](#emailAccount) 
@@ -91,8 +91,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assigneedDepartment: integer, default assigneed department
-    - assigneedAgent: integer, default assigneed agent
+    - assignedDepartment: integer, default assigned department
+    - assignedAgent: integer, default assigned agent
     - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
    - http status code
