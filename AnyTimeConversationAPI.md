@@ -5,7 +5,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | uniqueIdentifier | the id of email account |
-| `type`| string | Exchange, IMAP, Email Forwording|
+| `type`| string | Exchange, IMAP, Email Forwarding|
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
 | `serverInfo` | dynamic | `exchangeServer`, `IMAPServer`, `emailForwardingServer` |
@@ -33,7 +33,7 @@
 | `encryptedConnectionType`| string | none, SSL, TLS |
 | `authentication` | boolean | authentication |
 
-### emailForwordingServer
+### emailForwardingServer
 | Name | Type | Description | 
 | - | - | - | 
 | `forwardEmailTo` | string | forward email to | 
@@ -62,12 +62,12 @@
 ### Submit a new email account
 `post api/v3/anytimeConversation/emailAccounts`
 + Parameters
-    - type: string, exchange, IMAP, emailForwording
+    - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
     - assigneedDepartment: integer, default assigneed department
     - assigneedAgent: integer, default assigneed agent
-    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwordingServer`
+    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
     - emailAccounts: [emailAccount](#emailAccount) list
 
@@ -75,12 +75,12 @@
 `put api/v3/anytimeConversation/emailAccount/{id}`
 + Parameters
     - id: uniqueIdentifier, email account id
-    - type: string, exchange, IMAP, emailForwording
+    - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
     - assigneedDepartment: integer, default assigneed department
     - assigneedAgent: integer, default assigneed agent
-    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwordingServer`
+    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
    - emailAccount: [emailAccount](#emailAccount) 
 
@@ -88,12 +88,12 @@
 `put api/v3/anytimeConversation/emailAccount/{id}/test`
 + Parameters
     - id: uniqueIdentifier, email account id
-    - type: string, exchange, IMAP, emailForwording
+    - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
     - assigneedDepartment: integer, default assigneed department
     - assigneedAgent: integer, default assigneed agent
-    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwordingServer`
+    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
    - http status code
 
@@ -215,7 +215,7 @@
 ### autoUpdate
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | id of the condition |
+| `id` | uniqueIdentifier | id of the autoUpdate |
 | `type` | string | `query`, `rule`, `sla`, `routingRule` |
 | `fieldId` | integer | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
