@@ -4,7 +4,7 @@
 ### emailAccount
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | the id of Email Server |
+| `id` | uniqueIdentifier | the id of email account |
 | `type`| string | Exchange, IMAP, Email Forwording|
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
@@ -238,35 +238,127 @@
     - http status code
 
 # SLAPolicies
+## objects
+
+## endpoints
 
 # WorkingTime&Holiday
+## objects
+### workingTimeSettings
+| Name | Type | Description | 
+| - | - | - | 
+| `sundayBusinessTime` | [businessTime](#businessTime) | sunday business time |
+| `mondayBusinessTime` | [businessTime](#businessTime) | monday business time |
+| `tuesdayBusinessTime` | [businessTime](#businessTime) | tuesday business time |
+| `wednesdayBusinessTime` | [businessTime](#businessTime) | wednesday business time |
+| `thusdayBusinessTime` | [businessTime](#businessTime) | thusday business time |
+| `fridayBusinessTime` | [businessTime](#businessTime) | friday business time |
+| `saturdayBusinessTime` | [businessTime](#businessTime) | saturday business time |
+
+### businessTime
+| Name | Type | Description | 
+| - | - | - | 
+| `isBusinessDay` | boolean |  |
+| `openHour` | integer | business start hour |
+| `openMin` | integer | business start min |
+| `closeHour` | integer | business close hour |
+| `closeMin` | integer | business close min |
+
+### holiday
+| Name | Type | Description |
+| - | - | - | 
+| `id` | uniqueIdentifier | the id of the holiday |
+| `title` | string | the title of the holiday  |
+| `date` | datetime | the date of the holiday |
+
+## endpoints
+### Get working time setting
+`get api/v3/anytimeConversation/workingTime`
++ Parameters
+    - no parameters
++ Response
+    - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
+
+### Update working time settings
+`put api/v3/anytimeConversation/workingTime`
++ Parameters
+    - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
++ Response
+    - http status code
+
+### List all holidays
+`get api/v3/anytimeConversation/holidays`
++ Parameters
+    - no parameters
++ Response
+    - holidays: [holiday](#holiday) list
+
+### Get a holiday
+`get api/v3/anytimeConversation/holidays/{id}`
++ Parameters
+    - id: uniqueIdentifier
++ Response
+    - holiday: [holiday](#holiday)
+
+### Create a holiday
+`post api/v3/anytimeConversation/holidays`
++ Parameters
+    - id: uniqueIdentifier
+    - title: string, title of the holiday
+    - date: datetime, date of the holiday
++ Response
+    - holiday: [holiday](#holiday)
+
+### Update a holiday
+`put api/v3/anytimeConversation/holidays/{id}`
++ Parameters
+    - id: uniqueIdentifier
+    - title: string, title of the holiday
+    - date: datetime, date of the holiday
++ Response
+    - holiday: [holiday](#holiday)
+
+### Delete a holiday
+`delete api/v3/anytimeConversation/holidays`
++ Parameters
+    - id: uniqueIdentifier
++ Response
+    - http status code
 
 # BlockedSenders 
 ## objects 
 ### blocked sender 
 | Name | Type | Description | 
 | - | - | - | 
+| `id` | uniqueIdentifier | the id of blocked sender |
 | `email` | string | email or domain | 
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v2/ticket/blockedSenders` 
+`get /api/v2/anytimeConversation/blockedSenders` 
 + Parameters 
     - email: string, domain or email address 
 + Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
-### Add/update a block sender 
-`put api/v2/ticket/blockedSenders` 
+### Get a blocked sender
+`get /api/v2/anytimeConversation/blockedSenders/{id}`
++ Parameters
+    - id: uniqueIdentifier
++ Response
+    - blockedSender: [block sender](#blocked-sender) 
+
+### Add/update a blocked sender 
+`put api/v2/anytimeConversation/blockedSenders` 
 + Parameters 
     - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 + Response 
     - blockedSender: [block sender](#blocked-sender) 
 
-### Remove a block sender 
-`delete api/v2/ticket/blockedSenders` 
+### Remove a blocked sender 
+`delete api/v2/anytimeConversation/blockedSenders` 
 + Parameters 
    - email: string, domain or email address 
 + Response 
