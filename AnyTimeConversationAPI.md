@@ -8,7 +8,7 @@
 | `type`| string | Exchange, IMAP, Email Forwording|
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
-| `serverInfo` | dynamic | `exchangeServer`, `IMAPServer`, `emailForwordingServer` |
+| `serverInfo` | dynamic | `exchangeServer`, `IMAPServer`, `emailForwardingServer` |
 | `assigneedDepartment` | integer | default assigneed department |
 | `assigneedAgent` | integer | default assigneed agent |
 | `status` | boolean | succeeded, failed |
@@ -46,21 +46,21 @@
 
 ## endpoints 
 ### List all email accounts
-`get api/v2/anytimeConversation/emailAccounts` 
+`get api/v3/anytimeConversation/emailAccounts` 
 + Parameters
     - no parameters
 + Response 
     - emailAccounts: [emailAccount](#emailAccount) list
 
 ### Get a email account 
-`get api/v2/anytimeConversation/emailAccounts/{id} ` 
+`get api/v3/anytimeConversation/emailAccounts/{id} ` 
 + Parameters 
     - id: uniqueIdentifier, email account id  
 + Response 
     - emailAccount: [emailAccount](#emailAccount) 
 
 ### Submit a new email account
-`post api/v2/anytimeConversation/emailAccounts`
+`post api/v3/anytimeConversation/emailAccounts`
 + Parameters
     - type: string, exchange, IMAP, emailForwording
     - businessEmail: string, your business email address
@@ -72,7 +72,7 @@
     - emailAccounts: [emailAccount](#emailAccount) list
 
 ### Update a email account
-`put api/v2/anytimeConversation/emailAccount/{id}`
+`put api/v3/anytimeConversation/emailAccount/{id}`
 + Parameters
     - id: uniqueIdentifier, email account id
     - type: string, exchange, IMAP, emailForwording
@@ -85,7 +85,7 @@
    - emailAccount: [emailAccount](#emailAccount) 
 
 ### Test a email account
-`put api/v2/anytimeConversation/emailAccount/{id}/test`
+`put api/v3/anytimeConversation/emailAccount/{id}/test`
 + Parameters
     - id: uniqueIdentifier, email account id
     - type: string, exchange, IMAP, emailForwording
@@ -98,7 +98,7 @@
    - http status code
 
 ### Enable/Disable a email account
-`put api/v2/anytimeConversation/emailAccount/{id}/enable`
+`put api/v3/anytimeConversation/emailAccount/{id}/enable`
 + Parameters
     - id: uniqueIdentifier, email account id
     - enable: boolean, if enable email account
@@ -106,7 +106,7 @@
     - http status code
 
 ### Delete a email account
-`delete api/v2/anytimeConversation/emailAccount/{id}`
+`delete api/v3/anytimeConversation/emailAccount/{id}`
 + Parameters
     - id: uniqueIdentifier, email account id
 + Response
@@ -154,21 +154,21 @@
 
 ## endpoints
 ### Get auto allocation settings
-`get api/v2/anytimeConversation/autoAllocation`
+`get api/v3/anytimeConversation/autoAllocation`
 + Parameters
     - no parameters
 + Response
     - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
-`put api/v2/anytimeConversation/autoAllocation/enable `
+`put api/v3/anytimeConversation/autoAllocation/enable `
 + Parameters
     - enable: boolean, if enable auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
-`put api/v2/anytimeConversation/autoAllocation `
+`put api/v3/anytimeConversation/autoAllocation `
 + Parameters
     - enable: boolean, if enable auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
@@ -184,46 +184,82 @@
 # Triggers
 ## object
 ### trigger
-+ todo:
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | uniqueIdentifier | id of the trigger |
+| `description` | string | description of the trigger |
+| `enable` | boolean | if enable the trigger |
+| `event` | string | `When a conversation is created`, `When a conversation reply is received`, `When agent replied`, `When the assignee of a conversation is changed`, `When the status of a conversation is changed`, `When a conversation stays at a status for a specified period of time` |
+| `conditions` | [condition](#condition)[] | conditions | 
+| `setValue` | boolean | if set value |
+| `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
+| `sendEmail` | boolean | if send email |
+| `sendToContacts` | boolean | if send email |
+| `sendToAgents` | boolean | if send email |
+| `toAgents` | integer[] | send  email to agent(s) |
+| `subject` | string | subject of the email content |
+| `htmlText` | string | html body |
+| `plainText` | string | plain text |
+| `attachment` | [attachment](#attachment) | attachment |
+| `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
+
+### conditoin
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | uniqueIdentifier | id of the condition |
+| `type` | string | `query`, `rule`, `sla`, `routingRule` |
+| `fieldId` | integer | field id | 
+| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `value` | string | condition value | 
+
+### autoUpdate
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | uniqueIdentifier | id of the condition |
+| `type` | string | `query`, `rule`, `sla`, `routingRule` |
+| `fieldId` | integer | field id | 
+| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `value` | string | condition value | 
+
 
 ## endpoints
 ### List all triggers
-`get api/v2/anytimeConversation/triggers`
+`get api/v3/anytimeConversation/triggers`
 + Parameters
     - no parameters
 + Response
     - triggers: [trigger](#trigger) list
 
 ### Get a trigger
-`get api/v2/anytimeConversation/triggers/{id}`
+`get api/v3/anytimeConversation/triggers/{id}`
 + Parameters
     - id: uniqueIdentifier, trigger id
 + Response
     - trigger: [trigger](#trigger)
 
 ### Submit a trigger
-`post api/v2/anytimeConversation/triggers`
+`post api/v3/anytimeConversation/triggers`
 + Parameters
     - todo:
 + Response
     - todo:
 
  ### Update a trigger
-`put api/v2/anytimeConversation/triggers/{id}`
+`put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
     - todo:
 + Response
     - todo:
 
 ### Upgrade/Downgrade a triggers
-`put api/v2/anytimeConversation/triggers/{id}`
+`put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
     - todo:
 + Response
     - todo:
 
 ### Enable/Disable a triggers
-`put api/v2/anytimeConversation/triggers/{id}`
+`put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
     - id: uniqueIdentifier, trigger id
     - enable: boolean, if enable the trigger
@@ -231,7 +267,7 @@
     - http status code
 
  ### Delete a trigger
-`delete api/v2/anytimeConversation/triggers/{id}`
+`delete api/v3/anytimeConversation/triggers/{id}`
 + Parameters
     - id: uniqueIdentifier, trigger id
 + Response
@@ -241,6 +277,7 @@
 ## objects
 
 ## endpoints
+
 
 # WorkingTime&Holiday
 ## objects
@@ -336,21 +373,21 @@
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v2/anytimeConversation/blockedSenders` 
+`get /api/v3/anytimeConversation/blockedSenders` 
 + Parameters 
     - email: string, domain or email address 
 + Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
-`get /api/v2/anytimeConversation/blockedSenders/{id}`
+`get /api/v3/anytimeConversation/blockedSenders/{id}`
 + Parameters
     - id: uniqueIdentifier
 + Response
     - blockedSender: [block sender](#blocked-sender) 
 
 ### Add/update a blocked sender 
-`put api/v2/anytimeConversation/blockedSenders` 
+`put api/v3/anytimeConversation/blockedSenders` 
 + Parameters 
     - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
@@ -358,7 +395,7 @@
     - blockedSender: [block sender](#blocked-sender) 
 
 ### Remove a blocked sender 
-`delete api/v2/anytimeConversation/blockedSenders` 
+`delete api/v3/anytimeConversation/blockedSenders` 
 + Parameters 
    - email: string, domain or email address 
 + Response 
@@ -390,7 +427,7 @@
 
 ## endpoints 
 ### List all fields and their options 
-`get api/v2/ticket/fields` 
+`get api/v3/ticket/fields` 
 + Parameters
     - no parameters
 + Response 
