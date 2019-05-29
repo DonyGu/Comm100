@@ -202,6 +202,7 @@
 | `plainText` | string | plain text |
 | `attachment` | [attachment](#attachment) | attachment |
 | `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
+| `order` | integer | order |
 
 ### condition
 | Name | Type | Description | 
@@ -238,14 +239,43 @@
 ### Submit a trigger
 `post api/v3/anytimeConversation/triggers`
 + Parameters
-    - trigger: [trigger](#trigger) without id
+    - description, string, description of the trigger
+    - enable, boolean, if enable the trigger
+    - event, string 
+    - conditions, [condition](#condition)[], conditions 
+    - setValue, boolean, if set value
+    - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
+    - sendEmail, boolean, if send email
+    - sendToContacts, boolean, if send email
+    - sendToAgents, boolean, if send email
+    - toAgents, integer[], send  email to agent(s)
+    - subject, string, subject of the email content
+    - htmlText, string, html body
+    - plainText, string, plain text
+    - attachment, [attachment](#attachment), attachment
+    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - trigger: [trigger](#trigger)
 
  ### Update a trigger
 `put api/v3/anytimeConversation/triggers/{id}`
 + Parameters
-    - trigger: [trigger](#trigger)
+    - id, uniqueIdentifier, id of the trigger
+    - description, string, description of the trigger
+    - enable, boolean, if enable the trigger
+    - event, string 
+    - conditions, [condition](#condition)[], conditions 
+    - setValue, boolean, if set value
+    - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
+    - sendEmail, boolean, if send email
+    - sendToContacts, boolean, if send email
+    - sendToAgents, boolean, if send email
+    - toAgents, integer[], send  email to agent(s)
+    - subject, string, subject of the email content
+    - htmlText, string, html body
+    - plainText, string, plain text
+    - attachment, [attachment](#attachment), attachment
+    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - trigger: [trigger](#trigger)
 
