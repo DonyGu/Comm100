@@ -115,7 +115,6 @@
 # RoutingRules
 ## objects
 ### routingRule
-Route Rule is represented as simple flat JSON objects with the following keys: 
 | Name | Type | Description |
 | - | - | - |
 | `isEnable` | boolean |whether the routing rules isenable or not.
@@ -129,7 +128,6 @@ Route Rule is represented as simple flat JSON objects with the following keys:
 | `matchFailedToPriority` | string | conversation priorityenum number |
 
 ### customRule
-Custom Rule is represented as simple flat JSON objects with the following keys: 
 | Name | Type | Description |
 | - | - | - |
 | `id` | uniqueIdentifier | id of the custom rule |
@@ -142,8 +140,7 @@ Custom Rule is represented as simple flat JSON objects with the following keys:
 | `routeToId` | uniqueIdentifier |id of the route object |
 | `routeToPriority` | string | conversation priority enum number|
 
-### Conditions
-  Conditions is represented as simple flat JSON objects with the following keys:  
+### Conditions 
   | Name | Type |Description |
   | - | - | - | 
   | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
