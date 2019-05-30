@@ -252,22 +252,22 @@
 | `defaultAllocationRule`| [allocationRule](#allocationRule) | default allocation rules |
 | `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
 | `maxNumberForAllAgents` | integer | max conversation number for all agents |
-| `allocationAgentPreferences` | [allocationAgentPreference](#allocationAgentPreference)[] | agent preference for allocation |
+| `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
 | `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
 
 ### allocationRule
 | Name | Type | Description | 
 | - | - | - | 
-| `departmentId` | uniqueIdentifer | department id |
+| `departmentId` | string | department id |
 | `allocationTo` | string | allocated object |
 | `allocationRule`| string | `loadBalancing`, `roundRobin` |
 | `preferLastAssignee` | boolean | prefer to allocate to the last assignee |
 
-### allocationAgentPreference
+### agentPreference
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | uniqueIdentifer | agent id |
+| `agentId` | string | agent id |
 | `maxConcurrentCount` | integer | the maximum number of the conversations a agent can accept at the same time |
 | `ifAcceptAllocation` | boolean | if the agent accept conversations |
 
@@ -416,7 +416,7 @@
 ### SLAPolicy
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifer | SLA policy id |
+| `id` | string | SLA policy id |
 | `enable` | boolean | if enable this SLA policy |
 | `firstRespondWithin` | integer | the hours first reply within |
 | `nextRespondWithin` | integer | the hours next reply within |
@@ -455,7 +455,7 @@
 ### Update a SLA policy
 `put api/v2/anytime/SLAPolicies/{id}`
 + Parameters
-    - id: uniqueIdentifer, SLA policy id 
+    - id: string, SLA policy id 
     - enable: boolean, if enable this SLA policy 
     - firstRespondWithin: integer,  
     - nextRespondWithin: integer, 
