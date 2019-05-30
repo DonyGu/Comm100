@@ -14,6 +14,7 @@
 | `status` | boolean | succeeded, failed |
 | `lastReceivedTime` | datetime | last received time |
 | `enable` | boolean | if enable email account |
+| `isDefault` | boolean | if is default email account |
 
 ### exchangeServer
 | Name | Type | Description | 
@@ -107,6 +108,13 @@
 
 ### Delete a email account
 `delete api/v3/anytimeConversation/emailAccount/{id}`
++ Parameters
+    - id: uniqueIdentifier, email account id
++ Response
+    - http status code
+
+### Set default email account
+`put api/v3/anytimeConversation/emailAccount/{id}`
 + Parameters
     - id: uniqueIdentifier, email account id
 + Response
