@@ -4,11 +4,11 @@
 ### emailAccount
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | the id of email account |
+| `id` | string | the id of email account |
 | `type`| string | Exchange, IMAP, Email Forwarding|
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
-| `serverInfo` | dynamic | `exchangeServer`, `IMAPServer`, `emailForwardingServer` |
+| `serverInfo` | dynamic | [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer) |
 | `assignedDepartment` | integer | default assigned department |
 | `assignedAgent` | integer | default assigned agent |
 | `status` | boolean | succeeded, failed |
@@ -47,48 +47,48 @@
 
 ## endpoints 
 ### List all email accounts
-`get api/v3/anytimeConversation/emailAccounts` 
+`get api/v3/anytime/emailAccounts` 
 + Parameters
     - no parameters
 + Response 
     - emailAccounts: [emailAccount](#emailAccount) list
 
 ### Get a email account 
-`get api/v3/anytimeConversation/emailAccounts/{id} ` 
+`get api/v3/anytime/emailAccounts/{id} ` 
 + Parameters 
-    - id: uniqueIdentifier, email account id  
+    - id: string, email account id  
 + Response 
     - emailAccount: [emailAccount](#emailAccount) 
 
 ### Create a new email account
-`post api/v3/anytimeConversation/emailAccounts`
+`post api/v3/anytime/emailAccounts`
 + Parameters
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
     - assignedDepartment: integer, default assigned department
     - assignedAgent: integer, default assigned agent
-    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
+    - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
     - emailAccounts: [emailAccount](#emailAccount) list
 
 ### Update a email account
-`put api/v3/anytimeConversation/emailAccount/{id}`
+`put api/v3/anytime/emailAccount/{id}`
 + Parameters
-    - id: uniqueIdentifier, email account id
+    - id: string, email account id
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
     - assignedDepartment: integer, default assigned department
     - assignedAgent: integer, default assigned agent
-    - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
+    - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
    - emailAccount: [emailAccount](#emailAccount) 
 
 ### Test a email account
-`put api/v3/anytimeConversation/emailAccount/{id}/test`
+`put api/v3/anytime/emailAccount/{id}/test`
 + Parameters
-    - id: uniqueIdentifier, email account id
+    - id: string, email account id
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
@@ -99,24 +99,24 @@
    - http status code
 
 ### Enable/Disable a email account
-`put api/v3/anytimeConversation/emailAccount/{id}/enable`
+`put api/v3/anytime/emailAccount/{id}/enable`
 + Parameters
-    - id: uniqueIdentifier, email account id
+    - id: string, email account id
     - enable: boolean, if enable email account
 + Response
     - http status code
 
 ### Delete a email account
-`delete api/v3/anytimeConversation/emailAccount/{id}`
+`delete api/v3/anytime/emailAccount/{id}`
 + Parameters
-    - id: uniqueIdentifier, email account id
+    - id: string, email account id
 + Response
     - http status code
 
 ### Set default email account
-`put api/v3/anytimeConversation/emailAccount/{id}`
+`put api/v3/anytime/emailAccount/{id}`
 + Parameters
-    - id: uniqueIdentifier, email account id
+    - id: string, email account id
 + Response
     - http status code
 
@@ -128,24 +128,24 @@
 | `isEnable` | boolean |whether the routing rules isenable or not.
 | `type` |string | the type of routing, including `simple`and `rules`. |
 | `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
-| `simpleRouteToId` | uniqueIdentifier | id of the route object |
+| `simpleRouteToId` | string | id of the route object |
 | `simpleRouteToPriority` | int | conversation priorityenum number |
 | `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedToObject` | string | the rule of fail route  including `department` and `agent` |
-| `matchFailedrouteToId` | uniqueIdentifier | id of the routeobject |
+| `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedToPriority` | string | conversation priorityenum number |
 
 ### customRule
 | Name | Type | Description |
 | - | - | - |
-| `id` | uniqueIdentifier | id of the custom rule |
-| `routeId` | uniqueIdentifier | id of the routingRuleId |
+| `id` | string | id of the custom rule |
+| `routeId` | string | id of the routingRuleId |
 | `orderIndex` | integer | order of the custom rule |
 | `isEnable` | boolean | whether the custom rule is enable or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeToObject` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
-| `routeToId` | uniqueIdentifier |id of the route object |
+| `routeToId` | string |id of the route object |
 | `routeToPriority` | string | conversation priority enum number|
 
 ### Conditions 
@@ -159,67 +159,67 @@
 ### condition
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | id of the condition |
+| `id` | string | id of the condition |
 | `type` | string | `view`, `trigger`, `sla`, `routingRule` |
-| `fieldId` | uniqueIdentifier | field id | 
+| `fieldId` | string | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 
 ## endpoints
 ### List all routingRules
-`get api/v3/anytimeConversation/routingRules`
+`get api/v3/anytime/routingRules`
 + Parameters
     - no parameters
 + Response
     - routingRules: [routingRule](#routingRule) list
 
 ### Enable/Disable routingRules
-`put api/v3/anytimeConversation/routingRules/enable`
+`put api/v3/anytime/routingRules/enable`
 + Parameters
     - no parameters
 + Response
     - routingRules: [routingRule](#routingRule) list
 
 ### Update a routingRule
-`put api/v3/anytimeConversation/routingRules/{id}`
+`put api/v3/anytime/routingRules/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
     - enable: boolean
     - type: string, simple or custromRules
     - simpleRouteToObject: string, department and agent
-    - simpleRouteToId: uniqueIdentifier
+    - simpleRouteToId: string
     - simpleRoutePriority: string,
     - matchFailedToObject: string, department and agent
-    - matchFailedToId: uniqueIdentifier
+    - matchFailedToId: string
     - matchFailedToPriority: string
     - orderIndex: int, rules execute and display order
 + Response
     - routingRule: [routingRule](#routingRule)
 
 ### Enable/Disable a custom rule
-`put api/v3/anytimeConversation/routingRules/customRules/{id}/enable`
+`put api/v3/anytime/routingRules/customRules/{id}/enable`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
     - enable: boolean
 + Response
     - customRule: [customRule](#customRule) 
 
 ### Create a custom rule
-`post api/v3/anytimeConversation/routingRules/customRules`
+`post api/v3/anytime/routingRules/customRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
     - customRule: [customRule](#customRule)
 
 ### Get a custom rule
-`get api/v3/anytimeConversation/routingRules/customRules/{id}`
+`get api/v3/anytime/routingRules/customRules/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
 + Response
     - customRule: [customRule](#customRule)
 
 ### Update a custom rule
-`put api/v3/anytimeConversation/routingRules/customRules/{id}`
+`put api/v3/anytime/routingRules/customRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
@@ -227,16 +227,16 @@
 
 
 ### Delete a custom rule
-`put api/v3/anytimeConversation/routingRules/customRules/{id}`
+`put api/v3/anytime/routingRules/customRules/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
 + Response
     - http status code
 
 ### Upgrade/Downgrade a custom rule
-`put api/v3/anytimeConversation/routingRules/customRules/{id}/sort`
+`put api/v3/anytime/routingRules/customRules/{id}/sort`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
     - type: string, `up`, `down`
 + Response
     - http status code
@@ -273,21 +273,21 @@
 
 ## endpoints
 ### Get auto allocation settings
-`get api/v3/anytimeConversation/autoAllocation`
+`get api/v3/anytime/autoAllocation`
 + Parameters
     - no parameters
 + Response
     - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
-`put api/v3/anytimeConversation/autoAllocation/enable `
+`put api/v3/anytime/autoAllocation/enable `
 + Parameters
     - enable: boolean, if enable auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
-`put api/v3/anytimeConversation/autoAllocation `
+`put api/v3/anytime/autoAllocation `
 + Parameters
     - enable: boolean, if enable auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
@@ -304,7 +304,7 @@
 ### trigger
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | id of the trigger |
+| `id` | string | id of the trigger |
 | `description` | string | description of the trigger |
 | `enable` | boolean | if enable the trigger |
 | `event` | string | `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversation Stays at a status for a specified period of time` |
@@ -325,28 +325,28 @@
 ### autoUpdate
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | id of the autoUpdate |
-| `triggerId` | uniqueIdentifier | trigger id |
-| `fieldId` | uniqueIdentifier | field id | 
+| `id` | string | id of the autoUpdate |
+| `triggerId` | string | trigger id |
+| `fieldId` | string | field id | 
 | `value` | string | condition value | 
 
 ## endpoints
 ### List all triggers
-`get api/v3/anytimeConversation/triggers`
+`get api/v3/anytime/triggers`
 + Parameters 
     - no parameters
 + Response
     - triggers: [trigger](#trigger) list
 
 ### Get a trigger
-`get api/v3/anytimeConversation/triggers/{id}`
+`get api/v3/anytime/triggers/{id}`
 + Parameters
-    - id: uniqueIdentifier, trigger id
+    - id: string, trigger id
 + Response
     - trigger: [trigger](#trigger)
 
 ### Submit a trigger
-`post api/v3/anytimeConversation/triggers`
+`post api/v3/anytime/triggers`
 + Parameters
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
@@ -367,9 +367,9 @@
     - trigger: [trigger](#trigger)
 
  ### Update a trigger
-`put api/v3/anytimeConversation/triggers/{id}`
+`put api/v3/anytime/triggers/{id}`
 + Parameters
-    - id, uniqueIdentifier, id of the trigger
+    - id, string, id of the trigger
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
     - event, string 
@@ -389,25 +389,25 @@
     - trigger: [trigger](#trigger)
 
 ### Upgrade/Downgrade a triggers
-`put api/v3/anytimeConversation/triggers/{id}/sort`
+`put api/v3/anytime/triggers/{id}/sort`
 + Parameters
-    - id: uniqueIdentifier, trigger id
+    - id: string, trigger id
     - type: string, `up`, `down`
 + Response
     - triggers: [trigger](#trigger) list
 
 ### Enable/Disable a triggers
-`put api/v3/anytimeConversation/triggers/{id}`
+`put api/v3/anytime/triggers/{id}`
 + Parameters
-    - id: uniqueIdentifier, trigger id
+    - id: string, trigger id
     - enable: boolean, if enable the trigger
 + Response
     - http status code
 
  ### Delete a trigger
-`delete api/v3/anytimeConversation/triggers/{id}`
+`delete api/v3/anytime/triggers/{id}`
 + Parameters
-    - id: uniqueIdentifier, trigger id
+    - id: string, trigger id
 + Response
     - http status code
 
@@ -427,21 +427,21 @@
 
 ## endpoints
 ### List all SLA policies
-`get api/v2/anytimeConversation/SLAPolicies`
+`get api/v2/anytime/SLAPolicies`
 + Parameters
     - no parameters
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v2/anytimeConversation/SLAPolicies/{id}`
+`get api/v2/anytime/SLAPolicies/{id}`
 + Parameters
-    - id: uniqueIdentifier, SLA policy id
+    - id: string, SLA policy id
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v2/anytimeConversation/SLAPolicies`
+`post api/v2/anytime/SLAPolicies`
 + Parameters
     - enable: boolean, if enable this SLA policy 
     - firstRespondWithin: integer, 
@@ -453,7 +453,7 @@
     - SLAPolicy: [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v2/anytimeConversation/SLAPolicies/{id}`
+`put api/v2/anytime/SLAPolicies/{id}`
 + Parameters
     - id: uniqueIdentifer, SLA policy id 
     - enable: boolean, if enable this SLA policy 
@@ -466,16 +466,16 @@
     - SLAPolicy: [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
-`delete api/v2/anytimeConversation/SLAPolicies/{id}`
+`delete api/v2/anytime/SLAPolicies/{id}`
 + Parameters
-    - id: uniqueIdentifier, SLA policy id
+    - id: string, SLA policy id
 + Response
     - http status code
 
 ### Upgrade/Downgrade a SLA policy
-`put api/v3/anytimeConversation/triggers/{id}/sort`
+`put api/v3/anytime/triggers/{id}/sort`
 + Parameters
-    - id: uniqueIdentifier, SLA policy id
+    - id: string, SLA policy id
     - type: string, `up`, `down`
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy) list
@@ -505,61 +505,61 @@
 ### holiday
 | Name | Type | Description |
 | - | - | - | 
-| `id` | uniqueIdentifier | the id of the holiday |
+| `id` | string | the id of the holiday |
 | `title` | string | the title of the holiday  |
 | `date` | datetime | the date of the holiday |
 
 ## endpoints
 ### Get working time setting
-`get api/v3/anytimeConversation/workingTime`
+`get api/v3/anytime/workingTime`
 + Parameters
     - no parameters
 + Response
     - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
 
 ### Update working time settings
-`put api/v3/anytimeConversation/workingTime`
+`put api/v3/anytime/workingTime`
 + Parameters
     - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
 + Response
     - http status code
 
 ### List all holidays
-`get api/v3/anytimeConversation/holidays`
+`get api/v3/anytime/holidays`
 + Parameters
     - no parameters
 + Response
     - holidays: [holiday](#holiday) list
 
 ### Get a holiday
-`get api/v3/anytimeConversation/holidays/{id}`
+`get api/v3/anytime/holidays/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
 + Response
     - holiday: [holiday](#holiday)
 
 ### Create a holiday
-`post api/v3/anytimeConversation/holidays`
+`post api/v3/anytime/holidays`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
     - title: string, title of the holiday
     - date: datetime, date of the holiday
 + Response
     - holiday: [holiday](#holiday)
 
 ### Update a holiday
-`put api/v3/anytimeConversation/holidays/{id}`
+`put api/v3/anytime/holidays/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
     - title: string, title of the holiday
     - date: datetime, date of the holiday
 + Response
     - holiday: [holiday](#holiday)
 
 ### Delete a holiday
-`delete api/v3/anytimeConversation/holidays`
+`delete api/v3/anytime/holidays`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
 + Response
     - http status code
 
@@ -568,27 +568,27 @@
 ### blocked sender 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | the id of blocked sender |
+| `id` | string | the id of blocked sender |
 | `email` | string | email or domain | 
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v3/anytimeConversation/blockedSenders` 
+`get /api/v3/anytime/blockedSenders` 
 + Parameters 
     - email: string, domain or email address 
 + Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
-`get /api/v3/anytimeConversation/blockedSenders/{id}`
+`get /api/v3/anytime/blockedSenders/{id}`
 + Parameters
-    - id: uniqueIdentifier
+    - id: string
 + Response
     - blockedSender: [block sender](#blocked-sender) 
 
 ### Add/update a blocked sender 
-`put api/v3/anytimeConversation/blockedSenders` 
+`put api/v3/anytime/blockedSenders` 
 + Parameters 
     - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
@@ -596,7 +596,7 @@
     - blockedSender: [block sender](#blocked-sender) 
 
 ### Remove a blocked sender 
-`delete api/v3/anytimeConversation/blockedSenders` 
+`delete api/v3/anytime/blockedSenders` 
 + Parameters 
    - email: string, domain or email address 
 + Response 
@@ -608,7 +608,7 @@
 ### field 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | field id | 
+| `id` | string | field id | 
 | `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` |
 | `name` | string | field name | 
 | `isSystemField` | boolean | if is system field | 
@@ -617,13 +617,13 @@
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
 | `options` | [field option](#fieldoption)[] | value option | 
-| `chatFieldMapping` | uniqueIdentifier | chat field id |
-| `offlineMessageFieldMapping` | uniqueIdentifier | offline message field id |
+| `chatFieldMapping` | string | chat field id |
+| `offlineMessageFieldMapping` | string | offline message field id |
 
 ### fieldOption 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | uniqueIdentifier | option id | 
+| `id` | string | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
 | `order` | integer | option order | 
@@ -631,27 +631,27 @@
 ### fieldMapping
 | Name | Type | Description | 
 | - | - | - | 
-| `fieldId` | uniqueIdentifier | field id | 
-| `chatFieldMapping` | uniqueIdentifier | chat field id |
-| `offlineMessageFieldMapping` | uniqueIdentifier | offline message field id |
+| `fieldId` | string | field id | 
+| `chatFieldMapping` | string | chat field id |
+| `offlineMessageFieldMapping` | string | offline message field id |
 
 ## endpoints 
 ### List all fields and their options 
-`get api/v3/anytimeConversation/fields` 
+`get api/v3/anytime/fields` 
 + Parameters
     - isSystemField: boolean, if is system field 
 + Response 
     - fields: [field](#field) list 
 
 ### Get a field
-`get api/v3/anytimeConversation/fields/{id}`
+`get api/v3/anytime/fields/{id}`
 + Parameters
-    - id: uniqueIdentifier, field id
+    - id: string, field id
 + Response
     - fields: [field](#field) 
 
 ### Create a field
-`post api/v3/anytimeConversation/fields`
+`post api/v3/anytime/fields`
 + Parameters
     - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
@@ -665,9 +665,9 @@
     - fields: [field](#field) 
 
 ### Update a field
-`put api/v3/anytimeConversation/fields/{id}`
+`put api/v3/anytime/fields/{id}`
 + Parameters
-    - id, uniqueIdentifier, field id 
+    - id, string, field id 
     - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
     - isSystemField, boolean, if is system field 
@@ -680,14 +680,14 @@
     - fields: [field](#field) 
 
 ### Delete a field
-`delete api/v3/anytimeConversation/fields/{id}`
+`delete api/v3/anytime/fields/{id}`
 + Parameters
-    - id, uniqueIdentifier, field id 
+    - id, string, field id 
 + Response
     - http status code
 
 ### Mapping fields
-`put api/v3/anytimeConversation/fields/mapping`
+`put api/v3/anytime/fields/mapping`
 + Parameters
     - fieldMappings: [fieldMapping](#fieldMapping) list
 + Response
