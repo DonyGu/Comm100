@@ -113,10 +113,131 @@
     - http status code
 
 # RoutingRules
+## objects
+### routingRule
+Route Rule is represented as simple flat JSON objects with the following keys: 
+| Name | Type | Description |
+| - | - | - |
+| `isEnable` | boolean |whether the routing rules isenable or not.
+| `type` |string | the type of routing, including `simple`and `rules`. |
+| `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
+| `simpleRouteToId` | uniqueIdentifier | id of the route object |
+| `simpleRouteToPriority` | int | conversation priorityenum number |
+| `rules` | array | an array of [Custom Rule(#custom-rule-json-format) json object. |
+| `matchFailedToObject` | string | the rule of fail route  including `department` and `agent` |
+| `matchFailedrouteToId` | uniqueIdentifier | id of the routeobject |
+| `matchFailedToPriority` | string | conversation priorityenum number |
 
+### customRule
+Custom Rule is represented as simple flat JSON objects with the following keys: 
+| Name | Type | Description |
+| - | - | - |
+| `id` | uniqueIdentifier | id of the custom rule |
+| `routeId` | uniqueIdentifier | id of the routingRuleId |
+| `orderIndex` | integer | order of the custom rule |
+| `isEnable` | boolean | whether the custom rule is enable or not. |
+| `name` | string | name of the custom rule |
+| `conditions` | [Conditions](#conditions-json-format)  | an trigger condition json object. |
+| `routeToObject` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
+| `routeToId` | uniqueIdentifier |id of the route object |
+| `routeToPriority` | string | conversation priority enum number|
+
+### Conditions
+  Conditions is represented as simple flat JSON objects with the following keys:  
+  | Name | Type |Description |
+  | - | - | - | 
+  | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
+  | `logicExpression` | string | the logical expression of the conditions |
+  | `list` | array | an array of [condition](#condition) |
+
+  
+### condition
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | uniqueIdentifier | id of the condition |
+| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
+| `fieldId` | uniqueIdentifier | field id | 
+| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `value` | string | condition value | 
+
+## endpoints
+### List all routingRules
+`get api/v3/anytimeConversation/routingRules`
++ Parameters
+    - no parameters
++ Response
+    - routingRules: [routingRule](#routingRule) list
+
+### Enable/Disable routingRules
+`put api/v3/anytimeConversation/routingRules/enable`
++ Parameters
+    - no parameters
++ Response
+    - routingRules: [routingRule](#routingRule) list
+
+### Update a routingRule
+`put api/v3/anytimeConversation/routingRules/{id}`
++ Parameters
+    - id: uniqueIdentifier
+    - enable: boolean
+    - type: string, simple or custromRules
+    - simpleRouteToObject: string, department and agent
+    - simpleRouteToId: uniqueIdentifier
+    - simpleRoutePriority: string,
+    - matchFailedToObject: string, department and agent
+    - matchFailedToId: uniqueIdentifier
+    - matchFailedToPriority: string
+    - orderIndex: int, rules execute and display order
++ Response
+    - routingRule: [routingRule](#routingRule)
+
+### Enable/Disable a custom rule
+`put api/v3/anytimeConversation/routingRules/customRules/{id}/enable`
++ Parameters
+    - id: uniqueIdentifier
+    - enable: boolean
++ Response
+    - customRule: [customRule](#customRule) 
+
+### Create a custom rule
+`post api/v3/anytimeConversation/routingRules/customRules`
++ Parameters
+    - customRule: [customRule](#customRule)
++ Response
+    - customRule: [customRule](#customRule)
+
+### Get a custom rule
+`get api/v3/anytimeConversation/routingRules/customRules/{id}`
++ Parameters
+    - id: uniqueIdentifier
++ Response
+    - customRule: [customRule](#customRule)
+
+### Update a custom rule
+`put api/v3/anytimeConversation/routingRules/customRules/{id}`
++ Parameters
+    - customRule: [customRule](#customRule)
++ Response
+    - customRule: [customRule](#customRule)
+
+
+### Delete a custom rule
+`put api/v3/anytimeConversation/routingRules/customRules/{id}`
++ Parameters
+    - id: uniqueIdentifier
++ Response
+    - http status code
+
+### Upgrade/Downgrade a custom rule
+`put api/v3/anytimeConversation/routingRules/customRules/{id}/sort`
++ Parameters
+    - id: uniqueIdentifier
+    - type: string, `up`, `down`
++ Response
+    - http status code
 
 # AutoAllocation
-## object
+## objects
 ### autoAllocationSetting
 | Name | Type | Description | 
 | - | - | - | 
@@ -194,16 +315,7 @@
 | `plainText` | string | plain text |
 | `attachment` | [attachment](#attachment) | attachment |
 | `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
-| `order` | integer | order |
-
-### condition
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | uniqueIdentifier | id of the condition |
-| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
-| `fieldId` | uniqueIdentifier | field id | 
-| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
-| `value` | string | condition value | 
+| `orderIndex` | integer | trigger execute and display order |
 
 ### autoUpdate
 | Name | Type | Description | 
@@ -272,9 +384,10 @@
     - trigger: [trigger](#trigger)
 
 ### Upgrade/Downgrade a triggers
-`put api/v3/anytimeConversation/triggers/{id}`
+`put api/v3/anytimeConversation/triggers/{id}/sort`
 + Parameters
     - id: uniqueIdentifier, trigger id
+    - type: string, `up`, `down`
 + Response
     - triggers: [trigger](#trigger) list
 
@@ -305,7 +418,7 @@
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
 | `operationalHour`| string | `businessHours`, `calenderHours` |
 | `conditions` | [condition](#condition)[] | conditions | 
-| `order` | integer | order |
+| `orderIndex` | integer | SLA execute and display order |
 
 ## endpoints
 ### List all SLA policies
@@ -355,9 +468,10 @@
     - http status code
 
 ### Upgrade/Downgrade a SLA policy
-`put api/v3/anytimeConversation/triggers/{id}`
+`put api/v3/anytimeConversation/triggers/{id}/sort`
 + Parameters
     - id: uniqueIdentifier, SLA policy id
+    - type: string, `up`, `down`
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy) list
 
