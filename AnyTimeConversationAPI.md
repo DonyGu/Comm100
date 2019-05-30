@@ -122,7 +122,7 @@
 | `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | uniqueIdentifier | id of the route object |
 | `simpleRouteToPriority` | int | conversation priorityenum number |
-| `rules` | array | an array of [Custom Rule(#custom-rule-json-format) json object. |
+| `rules` | array | an array of [Custom Rule](#customRule) json object. |
 | `matchFailedToObject` | string | the rule of fail route  including `department` and `agent` |
 | `matchFailedrouteToId` | uniqueIdentifier | id of the routeobject |
 | `matchFailedToPriority` | string | conversation priorityenum number |
