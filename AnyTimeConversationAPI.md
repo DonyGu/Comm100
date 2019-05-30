@@ -125,7 +125,7 @@
 ### routingRule
 | Name | Type | Description |
 | - | - | - |
-| `isEnable` | boolean |whether the routing rules isenable or not.
+| `enable` | boolean |whether the routing rules is enabled or not.
 | `type` |string | the type of routing, including `simple`and `rules`. |
 | `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
@@ -141,7 +141,7 @@
 | `id` | string | id of the custom rule |
 | `routeId` | string | id of the routingRuleId |
 | `orderIndex` | integer | order of the custom rule |
-| `isEnable` | boolean | whether the custom rule is enable or not. |
+| `enable` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeToObject` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
@@ -247,9 +247,9 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `enable` | boolean | if enable Auto Allocation |
-| `isEnabledDepartment` | boolean | if the department is enabled |
 | `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
-| `defaultAllocationRule`| [allocationRule](#allocationRule) | default allocation rules |
+| `defaultRule`| string | `loadBalancing`, `roundRobin` |
+| `defaultPreferLastAssignee`| boolean | prefer to allocate to the last assignee |
 | `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
 | `maxNumberForAllAgents` | integer | max conversation number for all agents |
 | `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
@@ -260,7 +260,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `departmentId` | string | department id |
-| `allocationTo` | string | allocated object |
+| `departmentName` | string | department name |
 | `allocationRule`| string | `loadBalancing`, `roundRobin` |
 | `preferLastAssignee` | boolean | prefer to allocate to the last assignee |
 
@@ -497,10 +497,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `isBusinessDay` | boolean |  |
-| `openHour` | integer | business start hour |
-| `openMin` | integer | business start min |
-| `closeHour` | integer | business close hour |
-| `closeMin` | integer | business close min |
+| `startHour` | integer | business start hour |
+| `startMin` | integer | business start min |
+| `endHour` | integer | business close hour |
+| `endMin` | integer | business close min |
 
 ### holiday
 | Name | Type | Description |
