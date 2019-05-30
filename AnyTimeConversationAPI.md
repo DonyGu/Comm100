@@ -122,7 +122,7 @@
 | `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | uniqueIdentifier | id of the route object |
 | `simpleRouteToPriority` | int | conversation priorityenum number |
-| `rules` | array | an array of [Custom Rule](#customRule) json object. |
+| `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedToObject` | string | the rule of fail route  including `department` and `agent` |
 | `matchFailedrouteToId` | uniqueIdentifier | id of the routeobject |
 | `matchFailedToPriority` | string | conversation priorityenum number |
@@ -135,7 +135,7 @@
 | `orderIndex` | integer | order of the custom rule |
 | `isEnable` | boolean | whether the custom rule is enable or not. |
 | `name` | string | name of the custom rule |
-| `conditions` | [Conditions](#conditions-json-format)  | an trigger condition json object. |
+| `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeToObject` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | uniqueIdentifier |id of the route object |
 | `routeToPriority` | string | conversation priority enum number|
@@ -145,7 +145,7 @@
   | - | - | - | 
   | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
   | `logicExpression` | string | the logical expression of the conditions |
-  | `list` | array | an array of [condition](#condition) |
+  | `list` | [condition](#condition)[] | an array of [condition](#condition) |
 
   
 ### condition
