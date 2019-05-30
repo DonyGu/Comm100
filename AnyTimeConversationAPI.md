@@ -307,7 +307,7 @@
 | `id` | string | id of the trigger |
 | `description` | string | description of the trigger |
 | `enable` | boolean | if enable the trigger |
-| `event` | string | `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversation Stays at a status for a specified period of time` |
+| `event` | integer | trigger event enum number |
 | `conditions` | [condition](#condition)[] | conditions | 
 | `setValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
@@ -350,7 +350,7 @@
 + Parameters
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
-    - event, string 
+    - event, integer 
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
@@ -372,7 +372,7 @@
     - id, string, id of the trigger
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
-    - event, string 
+    - event, integer 
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
