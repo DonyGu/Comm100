@@ -127,11 +127,11 @@
 | - | - | - |
 | `enable` | boolean |whether the routing rules is enabled or not.
 | `type` |string | the type of routing, including `simple`and `rules`. |
-| `simpleRouteToObject` | string | the rule of route ,including `department` and `agent` |
+| `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteToPriority` | int | conversation priorityenum number |
 | `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
-| `matchFailedToObject` | string | the rule of fail route  including `department` and `agent` |
+| `matchFailedType` | string | the rule of fail route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedToPriority` | string | conversation priorityenum number |
 
@@ -144,7 +144,7 @@
 | `enable` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
-| `routeToObject` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
+| `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
 | `routeToPriority` | string | conversation priority enum number|
 
@@ -186,10 +186,10 @@
     - id: string
     - enable: boolean
     - type: string, simple or custromRules
-    - simpleRouteToObject: string, department and agent
+    - simpleRouteType: string, department and agent
     - simpleRouteToId: string
     - simpleRoutePriority: string,
-    - matchFailedToObject: string, department and agent
+    - matchFailedType: string, department and agent
     - matchFailedToId: string
     - matchFailedToPriority: string
     - orderIndex: int, rules execute and display order
@@ -307,7 +307,7 @@
 | `id` | string | id of the trigger |
 | `description` | string | description of the trigger |
 | `enable` | boolean | if enable the trigger |
-| `event` | integer | trigger event enum number |
+| `event` | string |  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` |
 | `conditions` | [condition](#condition)[] | conditions | 
 | `setValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
@@ -350,7 +350,7 @@
 + Parameters
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
-    - event, integer 
+    - event, string, `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime`
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
@@ -372,7 +372,7 @@
     - id, string, id of the trigger
     - description, string, description of the trigger
     - enable, boolean, if enable the trigger
-    - event, integer 
+    - event, string,  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` 
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
@@ -421,7 +421,7 @@
 | `firstRespondWithin` | integer | the hours first reply within |
 | `nextRespondWithin` | integer | the hours next reply within |
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
-| `operationalHour`| string | `businessHours`, `calenderHours` |
+| `businessHours`| boolean | `businessHours` or `calenderHours` |
 | `conditions` | [condition](#condition)[] | conditions | 
 | `orderIndex` | integer | SLA execute and display order |
 
@@ -447,7 +447,7 @@
     - firstRespondWithin: integer, 
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer, 
-    - operationalHour: string, `businessHours`, `calenderHours` 
+    - businessHours: boolean, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy)
@@ -460,7 +460,7 @@
     - firstRespondWithin: integer,  
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer,  
-    - operationalHour: string, `businessHours`, `calenderHours` 
+    - businessHours: string, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
     - SLAPolicy: [SLAPolicy](#SLApolicy)
@@ -482,20 +482,10 @@
 
 # WorkingTime&Holiday
 ## objects
-### workingTimeSettings
+### workingTime
 | Name | Type | Description | 
 | - | - | - | 
-| `sundayBusinessTime` | [businessTime](#businessTime) | sunday business time |
-| `mondayBusinessTime` | [businessTime](#businessTime) | monday business time |
-| `tuesdayBusinessTime` | [businessTime](#businessTime) | tuesday business time |
-| `wednesdayBusinessTime` | [businessTime](#businessTime) | wednesday business time |
-| `thusdayBusinessTime` | [businessTime](#businessTime) | thusday business time |
-| `fridayBusinessTime` | [businessTime](#businessTime) | friday business time |
-| `saturdayBusinessTime` | [businessTime](#businessTime) | saturday business time |
-
-### businessTime
-| Name | Type | Description | 
-| - | - | - | 
+| `dayOfWeek` | string | day of week |
 | `isBusinessDay` | boolean |  |
 | `startHour` | integer | business start hour |
 | `startMin` | integer | business start min |
@@ -515,12 +505,12 @@
 + Parameters
     - no parameters
 + Response
-    - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
+    - workingTimes: [workingTime](#workingTime) list
 
 ### Update working time settings
 `put api/v3/anytime/workingTime`
 + Parameters
-    - workingTimeSetting: [workingTimeSetting](#workingTimeSetting)
+    - workingTimes: [workingTime](#workingTime)[]
 + Response
     - http status code
 
