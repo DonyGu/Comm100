@@ -129,11 +129,11 @@
 | `type` |string | the type of routing, including `simple`and `rules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
-| `simpleRouteToPriority` | int | conversation priorityenum number |
+| `simpleRouteToPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of fail route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
-| `matchFailedToPriority` | string | conversation priorityenum number |
+| `matchFailedToPriority` | string | `urgent`, `high`, `normal`, `low` |
 
 ### customRule
 | Name | Type | Description |
