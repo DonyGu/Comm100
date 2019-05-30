@@ -9,9 +9,9 @@
 | `businessEmail` | string | your business email address |
 | `displayName` | string | the display name your recipients will see |
 | `serverInfo` | dynamic | [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer) |
-| `assignedDepartment` | integer | default assigned department |
-| `assignedAgent` | integer | default assigned agent |
-| `status` | boolean | succeeded, failed |
+| `assignedDepartment` | string | default assigned department |
+| `assignedAgent` | string | default assigned agent |
+| `status` | boolean | success, failed |
 | `lastReceivedTime` | datetime | last received time |
 | `enable` | boolean | if enable email account |
 | `isDefault` | boolean | if is default email account |
@@ -66,8 +66,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assignedDepartment: integer, default assigned department
-    - assignedAgent: integer, default assigned agent
+    - assignedDepartment: string, default assigned department
+    - assignedAgent: string, default assigned agent
     - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
     - emailAccounts: [emailAccount](#emailAccount) list
@@ -79,8 +79,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assignedDepartment: integer, default assigned department
-    - assignedAgent: integer, default assigned agent
+    - assignedDepartment: string, default assigned department
+    - assignedAgent: string, default assigned agent
     - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
    - emailAccount: [emailAccount](#emailAccount) 
@@ -92,8 +92,8 @@
     - type: string, exchange, IMAP, emailForwarding
     - businessEmail: string, your business email address
     - displayName: string, the display name your recipients will see
-    - assignedDepartment: integer, default assigned department
-    - assignedAgent: integer, default assigned agent
+    - assignedDepartment: string, default assigned department
+    - assignedAgent: string, default assigned agent
     - serverInfo: dynamic, `exchangeServer`, `IMAPServer`, `emailForwardingServer`
 + Response
    - http status code
