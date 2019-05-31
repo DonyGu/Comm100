@@ -51,7 +51,7 @@
 + Parameters
     - no parameters
 + Response 
-    - [emailAccount](#emailAccount) list
+    - emailAccounts: [emailAccount](#emailAccount) list
 
 ### Get a email account 
 `get api/v3/anytime/emailAccounts/{id} ` 
@@ -171,14 +171,14 @@
 + Parameters
     - no parameters
 + Response
-    - [routingRule](#routingRule) list
+    - routingRules: [routingRule](#routingRule) list
 
 ### Enable/Disable routingRules
 `put api/v3/anytime/routingRules/enable`
 + Parameters
     - no parameters
 + Response
-    - [routingRule](#routingRule) list
+    - http status code
 
 ### Update a routingRule
 `put api/v3/anytime/routingRules/{id}`
@@ -336,7 +336,7 @@
 + Parameters 
     - no parameters
 + Response
-    - [trigger](#trigger) list
+    - triggers: [trigger](#trigger) list
 
 ### Get a trigger
 `get api/v3/anytime/triggers/{id}`
@@ -394,7 +394,7 @@
     - id: string, trigger id
     - type: string, `up`, `down`
 + Response
-    - [trigger](#trigger) list
+    - http status code
 
 ### Enable/Disable a triggers
 `put api/v3/anytime/triggers/{id}`
@@ -431,7 +431,7 @@
 + Parameters
     - no parameters
 + Response
-    - [SLAPolicy](#SLApolicy) list
+    - SLAPolicies: [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
 `get api/v2/anytime/SLAPolicies/{id}`
@@ -478,7 +478,7 @@
     - id: string, SLA policy id
     - type: string, `up`, `down`
 + Response
-    - [SLAPolicy](#SLApolicy) list
+    - http status code
 
 # WorkingTime&Holiday
 ## objects
@@ -505,7 +505,7 @@
 + Parameters
     - no parameters
 + Response
-    - [workingTime](#workingTime) list
+    - workingTimes: [workingTime](#workingTime) list
 
 ### Update working time settings
 `put api/v3/anytime/workingTime`
@@ -519,7 +519,7 @@
 + Parameters
     - no parameters
 + Response
-    - [holiday](#holiday) list
+    - holidays: [holiday](#holiday) list
 
 ### Get a holiday
 `get api/v3/anytime/holidays/{id}`
@@ -568,7 +568,7 @@
 + Parameters 
     - email: string, domain or email address 
 + Response 
-    - [block sender](#blocked-sender) list 
+    - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
 `get /api/v3/anytime/blockedSenders/{id}`
@@ -631,7 +631,7 @@
 + Parameters
     - isSystemField: boolean, if is system field 
 + Response 
-    - [field](#field) list 
+    - fields: [field](#field) list 
 
 ### Get a field
 `get api/v3/anytime/fields/{id}`
