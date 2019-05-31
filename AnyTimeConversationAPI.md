@@ -51,14 +51,14 @@
 + Parameters
     - no parameters
 + Response 
-    - emailAccounts: [emailAccount](#emailAccount) list
+    - [emailAccount](#emailAccount) list
 
 ### Get a email account 
 `get api/v3/anytime/emailAccounts/{id} ` 
 + Parameters 
     - id: string, email account id  
 + Response 
-    - emailAccount: [emailAccount](#emailAccount) 
+    - [emailAccount](#emailAccount) 
 
 ### Create a new email account
 `post api/v3/anytime/emailAccounts`
@@ -70,7 +70,7 @@
     - assignedAgent: string, default assigned agent
     - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
-    - emailAccounts: [emailAccount](#emailAccount) list
+    - [emailAccount](#emailAccount) list
 
 ### Update a email account
 `put api/v3/anytime/emailAccount/{id}`
@@ -83,7 +83,7 @@
     - assignedAgent: string, default assigned agent
     - serverInfo: dynamic, [exchangeServer](#exchangeServer), [IMAPServer](#IMAPServer), [emailForwardingServer](#emailForwardingServer)
 + Response
-   - emailAccount: [emailAccount](#emailAccount) 
+   - [emailAccount](#emailAccount) 
 
 ### Test a email account
 `put api/v3/anytime/emailAccount/{id}/test`
@@ -171,14 +171,14 @@
 + Parameters
     - no parameters
 + Response
-    - routingRules: [routingRule](#routingRule) list
+    - [routingRule](#routingRule) list
 
 ### Enable/Disable routingRules
 `put api/v3/anytime/routingRules/enable`
 + Parameters
     - no parameters
 + Response
-    - routingRules: [routingRule](#routingRule) list
+    - [routingRule](#routingRule) list
 
 ### Update a routingRule
 `put api/v3/anytime/routingRules/{id}`
@@ -194,7 +194,7 @@
     - matchFailedToPriority: string
     - orderIndex: int, rules execute and display order
 + Response
-    - routingRule: [routingRule](#routingRule)
+    - [routingRule](#routingRule)
 
 ### Enable/Disable a custom rule
 `put api/v3/anytime/routingRules/customRules/{id}/enable`
@@ -202,28 +202,28 @@
     - id: string
     - enable: boolean
 + Response
-    - customRule: [customRule](#customRule) 
+    - [customRule](#customRule) 
 
 ### Create a custom rule
 `post api/v3/anytime/routingRules/customRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
-    - customRule: [customRule](#customRule)
+    - [customRule](#customRule)
 
 ### Get a custom rule
 `get api/v3/anytime/routingRules/customRules/{id}`
 + Parameters
     - id: string
 + Response
-    - customRule: [customRule](#customRule)
+    - [customRule](#customRule)
 
 ### Update a custom rule
 `put api/v3/anytime/routingRules/customRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
-    - customRule: [customRule](#customRule)
+    - [customRule](#customRule)
 
 
 ### Delete a custom rule
@@ -277,7 +277,7 @@
 + Parameters
     - no parameters
 + Response
-    - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
+    - [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
 `put api/v3/anytime/autoAllocation/enable `
@@ -297,7 +297,7 @@
     - excludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
     - excludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
 + Response
-    - autoAllocationSetting: [autoAllocationSetting](#autoAllocationSetting)
+    - [autoAllocationSetting](#autoAllocationSetting)
 
 # Triggers
 ## object
@@ -336,14 +336,14 @@
 + Parameters 
     - no parameters
 + Response
-    - triggers: [trigger](#trigger) list
+    - [trigger](#trigger) list
 
 ### Get a trigger
 `get api/v3/anytime/triggers/{id}`
 + Parameters
     - id: string, trigger id
 + Response
-    - trigger: [trigger](#trigger)
+    - [trigger](#trigger)
 
 ### Submit a trigger
 `post api/v3/anytime/triggers`
@@ -364,7 +364,7 @@
     - attachment, [attachment](#attachment), attachment
     - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
-    - trigger: [trigger](#trigger)
+    - [trigger](#trigger)
 
  ### Update a trigger
 `put api/v3/anytime/triggers/{id}`
@@ -386,7 +386,7 @@
     - attachment, [attachment](#attachment), attachment
     - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
-    - trigger: [trigger](#trigger)
+    - [trigger](#trigger)
 
 ### Upgrade/Downgrade a triggers
 `put api/v3/anytime/triggers/{id}/sort`
@@ -394,7 +394,7 @@
     - id: string, trigger id
     - type: string, `up`, `down`
 + Response
-    - triggers: [trigger](#trigger) list
+    - [trigger](#trigger) list
 
 ### Enable/Disable a triggers
 `put api/v3/anytime/triggers/{id}`
@@ -431,14 +431,14 @@
 + Parameters
     - no parameters
 + Response
-    - SLAPolicy: [SLAPolicy](#SLApolicy) list
+    - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
 `get api/v2/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
-    - SLAPolicy: [SLAPolicy](#SLApolicy)
+    - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
 `post api/v2/anytime/SLAPolicies`
@@ -450,7 +450,7 @@
     - businessHours: boolean, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
-    - SLAPolicy: [SLAPolicy](#SLApolicy)
+    - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
 `put api/v2/anytime/SLAPolicies/{id}`
@@ -463,7 +463,7 @@
     - businessHours: string, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
-    - SLAPolicy: [SLAPolicy](#SLApolicy)
+    - [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
 `delete api/v2/anytime/SLAPolicies/{id}`
@@ -478,7 +478,7 @@
     - id: string, SLA policy id
     - type: string, `up`, `down`
 + Response
-    - SLAPolicy: [SLAPolicy](#SLApolicy) list
+    - [SLAPolicy](#SLApolicy) list
 
 # WorkingTime&Holiday
 ## objects
@@ -505,7 +505,7 @@
 + Parameters
     - no parameters
 + Response
-    - workingTimes: [workingTime](#workingTime) list
+    - [workingTime](#workingTime) list
 
 ### Update working time settings
 `put api/v3/anytime/workingTime`
@@ -519,14 +519,14 @@
 + Parameters
     - no parameters
 + Response
-    - holidays: [holiday](#holiday) list
+    - [holiday](#holiday) list
 
 ### Get a holiday
 `get api/v3/anytime/holidays/{id}`
 + Parameters
     - id: string
 + Response
-    - holiday: [holiday](#holiday)
+    - [holiday](#holiday)
 
 ### Create a holiday
 `post api/v3/anytime/holidays`
@@ -535,7 +535,7 @@
     - title: string, title of the holiday
     - date: datetime, date of the holiday
 + Response
-    - holiday: [holiday](#holiday)
+    - [holiday](#holiday)
 
 ### Update a holiday
 `put api/v3/anytime/holidays/{id}`
@@ -544,7 +544,7 @@
     - title: string, title of the holiday
     - date: datetime, date of the holiday
 + Response
-    - holiday: [holiday](#holiday)
+    - [holiday](#holiday)
 
 ### Delete a holiday
 `delete api/v3/anytime/holidays`
@@ -568,14 +568,14 @@
 + Parameters 
     - email: string, domain or email address 
 + Response 
-    - blockedSenders: [block sender](#blocked-sender) list 
+    - [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
 `get /api/v3/anytime/blockedSenders/{id}`
 + Parameters
     - id: string
 + Response
-    - blockedSender: [block sender](#blocked-sender) 
+    - [block sender](#blocked-sender) 
 
 ### Add/update a blocked sender 
 `put api/v3/anytime/blockedSenders` 
@@ -583,7 +583,7 @@
     - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 + Response 
-    - blockedSender: [block sender](#blocked-sender) 
+    - [block sender](#blocked-sender) 
 
 ### Remove a blocked sender 
 `delete api/v3/anytime/blockedSenders` 
@@ -631,14 +631,14 @@
 + Parameters
     - isSystemField: boolean, if is system field 
 + Response 
-    - fields: [field](#field) list 
+    - [field](#field) list 
 
 ### Get a field
 `get api/v3/anytime/fields/{id}`
 + Parameters
     - id: string, field id
 + Response
-    - fields: [field](#field) 
+    - [field](#field) 
 
 ### Create a field
 `post api/v3/anytime/fields`
@@ -652,7 +652,7 @@
     - length, integer, field value max length 
     - options, [field option](#fieldoption)[], value option 
 + Response
-    - fields: [field](#field) 
+    - [field](#field) 
 
 ### Update a field
 `put api/v3/anytime/fields/{id}`
@@ -667,7 +667,7 @@
     - length, integer, field value max length 
     - options, [field option](#fieldoption)[], value option 
 + Response
-    - fields: [field](#field) 
+    - [field](#field) 
 
 ### Delete a field
 `delete api/v3/anytime/fields/{id}`
